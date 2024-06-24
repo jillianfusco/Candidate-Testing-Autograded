@@ -11,9 +11,14 @@ let candidateAnswer = ""
 
 
 //TODO: Variables for Part 2
-let questions;
-let correctAnswers;
-let candidateAnswers;
+let questions = ["Who was the first American woman in space? ",
+                  "True or false: 5 kilometer == 5000 meters? ",
+                  "(5 + 3)/2 * 10 = ? ",
+                  "Given the array [8, 'Orbit', 'Trajectory', 45], what entry is at index 2? ",
+                  "What is the minimum crew size for the ISS? "
+]
+let correctAnswers = ["Sally Ride", "true", "40", "Trajectory", "3"]
+let candidateAnswers = []
 
 
 function askForName() {
@@ -23,18 +28,21 @@ candidateName = input.question("Please enter your name: ")
 
 function askQuestion() {
   // TODO 1.2b: Ask candidate the question and assign the response as candidateAnswer //
-candidateAnswer = input.question(`Question 1: ${question}`)
-
+for (let i = 0; i < questions.length; i++) {
+  candidateAnswers[i] = input.question(`${i + 1}) ${questions[i]}`)
+}
 }
 
 function gradeQuiz(candidateAnswers) {
-
+  console.log(`\nCandidate Name: ${candidateName}`)
   // TODO 1.2c: Let the candidate know if they have answered the question correctly or incorrectly // 
-if (candidateAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
-  console.log(`Correct answer!`)
-} else {
-  console.log(`Sorry, that answer is incorrect`)
-}
+  for (let i = 0; i < questions.length; i++) {
+    console.log(`${i + 1}) ${questions[i]}`)
+    console.log(`Your Answer: ${candidateAnswers[i]}`)
+    console.log(`Correct  Answer: ${correctAnswers[i]}\n`)
+  }
+  
+
 
 
   let grade;  //TODO 3.2 use this variable to calculate the candidates score.
@@ -48,10 +56,10 @@ function runProgram() {
   // TODO 1.1c: Greet candidate using their name //
    console.log(`Hi ${candidateName}! Welcome to the quiz :)`);
   askQuestion();
-  gradeQuiz(this.candidateAnswers);
+  gradeQuiz(candidateAnswers);
 }
+runProgram()
 
-// change something to commit 
 // ----------- Don't write any code or change any code below this line ---------- //
 module.exports = {
   candidateName: candidateName,
