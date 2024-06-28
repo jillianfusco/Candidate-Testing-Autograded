@@ -36,20 +36,31 @@ for (let i = 0; i < questions.length; i++) {
 function gradeQuiz(candidateAnswers) {
   console.log(`\nCandidate Name: ${candidateName}`)
   // TODO 1.2c: Let the candidate know if they have answered the question correctly or incorrectly // 
+  let correctCount = 0;
   for (let i = 0; i < questions.length; i++) {
-    console.log(`${i + 1}) ${questions[i]}`)
-    console.log(`Your Answer: ${candidateAnswers[i]}`)
-    console.log(`Correct  Answer: ${correctAnswers[i]}\n`)
+    console.log(`\nCandidate Name: ${candidateName}`)
+    console.log(`${i + 1}) ${questions[i]}`);
+    console.log(`Your Answer: ${candidateAnswers[i]}`);
+    console.log(`Correct Answer: ${correctAnswers[i]}`);
+
+    if (candidateAnswers[i].toLowerCase() === correctAnswers[i].toLowerCase()) {
+      correctCount++;
+    }
   }
+
+ //TODO 3.2 use this variable to calculate the candidates score.
   
+ let grade = (correctCount / questions.length) * 100;
+  console.log(`\n>>> Overall Grade: ${grade}% (${correctCount} of ${questions.length} responses correct) <<<`);
 
-
-
-  let grade;  //TODO 3.2 use this variable to calculate the candidates score.
-
-
+  if (grade >= 80) {
+    console.log(`>>> Status: PASSED <<<`);
+  } else {
+    console.log(`>>> Status: FAILED <<<`);
+  }
   return grade;
 }
+
 
 function runProgram() {
   askForName();
@@ -58,7 +69,7 @@ function runProgram() {
   askQuestion();
   gradeQuiz(candidateAnswers);
 }
-runProgram()
+
 
 // ----------- Don't write any code or change any code below this line ---------- //
 module.exports = {
